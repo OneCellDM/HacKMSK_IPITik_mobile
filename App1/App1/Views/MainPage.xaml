@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.MainPage"
+             xmlns:conv="clr-namespace:App1.Converters"
+             xmlns:vm="clr-namespace:App1.ViewModels"
+             Title="{Binding Title}">
+
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <conv:InvertBoolConverter x:Key="invertBoolConverter"></conv:InvertBoolConverter>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="errorDescriptionStyle">
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="Default"/>
+                <Setter Property="TextColor" Value="Black"/>
+                
+                
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView Grid.Row="0">
+        <StackLayout Spacing="10">
+
+            <Label HorizontalOptions="Center" FontSize="Large" Text="Отправить видео"></Label>
+            <Grid VerticalOptions="Center" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="0">
+                    <Label
+                        Style="{StaticResource errorDescriptionStyle}"
+                        Text="{Binding Floor.ValidationDescriptions}"
+                        IsVisible="{Binding Floor.IsValid, Converter={StaticResource invertBoolConverter}}" />
+
+
+                    <Entry Placeholder="Этаж" Text="{Binding Floor.Value,Mode=Default}">
+                        <Entry.Triggers>
+                            <DataTrigger 
+                                        TargetType="Entry"
+                                        Binding="{Binding Floor.IsValid}"
+                                        Value="False">
+                                <Setter Property="TextColor" Value="Red" />
+                            </DataTrigger>
+                        </Entry.Triggers>
+                    </Entry>
+
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="10" Grid.Row="1">
+                    <Label VerticalOptions="Center" FontSize="Medium" Text="Loaction:"/>
+                    <Entry WidthRequest="120" Text="{Binding GeoLoaction.Latitude}"/>
+                    <Entry WidthRequest="120" Text="{Binding GeoLoaction.Longitude}"/>
+                </StackLayout>
+                
+                <StackLayout Grid.Row="2">
+
+                    <Label
+                        Style="{StaticResource errorDescriptionStyle}"
+                        Text="{Binding Flat.ValidationDescriptions}"
+                        IsVisible="{Binding Flat.IsValid, Converter={StaticResource invertBoolConverter}}" />
+
+
+                    <Entry Placeholder="Номер квартиры" Text="{Binding Flat.Value}">
+                        <Entry.Triggers>
+                            <DataTrigger 
+                                        TargetType="Entry"
+                                        Binding="{Binding Flat.IsValid}"
+                                        Value="False">
+                                <Setter Property="TextColor" Value="Red" />
+                            </DataTrigger>
+                        </Entry.Triggers>
+                    </Entry>
+
+                </StackLayout>
+
+                <StackLayout Grid.Row="3">
+                    <Picker Title="Тип комнаты" SelectedIndex="{Binding RoomTypeSelectedIndex}" 
+                            ItemsSource="{Binding RooomTypes}">
+                        
+                    </Picker>
+
+                </StackLayout>
+
+
+                <StackLayout Grid.Row="4">
+                    
+        
+                    <Button Command="{Binding  VideoRecordCommand}" 
+                        IsEnabled="{Binding ValidationManager.HasValide}" 
+                        Text="Записать видео" Grid.Row="4"/>
+                    <Button Command="{Binding OpenFileCommand}" 
+                        IsEnabled="{Binding ValidationManager.HasValide}" 
+                        Text="Открыть видео" />
+                </StackLayout>
+
+                <Label Text="{Binding  ResultData}" FontSize="Medium"  HorizontalOptions="Center" Grid.Row="5" />
+                <ActivityIndicator Color="{StaticResource Primary}" IsRunning="{Binding IsBusy}" Grid.Row="6"></ActivityIndicator>
+
+
+
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
