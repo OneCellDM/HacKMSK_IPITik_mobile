@@ -19,4 +19,4 @@ line - 26
 
 
 Перед запуском требуется работающий сервер: https://github.com/Jexelus/HacKMSK_IPITik_web
-![alt_text](https://tenor.com/ru/view/zero-two-gif-19106765#:~:text=https%3A//tenor.com/ru/view/zero%2Dtwo%2Dgif%2D19106765)
+
