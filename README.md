@@ -17,7 +17,5 @@
 line - 25
 line - 26
 
-Перед зазапуском требуется рабочий сервер: https://github.com/Jexelus/HacKMSK_IPITik_web
 
-# THIS README ONLY FOR WEBSITE AND BACKEND 
-mobile project - https://github.com/OneCellDM/HacKMSK_IPITik_mobile
+Перед запуском требуется работающий сервер: https://github.com/Jexelus/HacKMSK_IPITik_web
