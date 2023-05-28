@@ -4,7 +4,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace App1.Views
+namespace HakatonAPP.Views
 {
     public partial class MainPage : ContentPage
     {

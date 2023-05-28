@@ -1,21 +1,22 @@
 ﻿
-using App1.Views;
+using HakatonAPP.Views;
 
 using System;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace App1
+namespace HakatonAPP
 {
     public partial class App : Application
     {
 
         public App()
         {
+
             InitializeComponent();
 
-            
+            Plugin.Media.CrossMedia.Current.Initialize();
             MainPage = new AppShell();
         }
 

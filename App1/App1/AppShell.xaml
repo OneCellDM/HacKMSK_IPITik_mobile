@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:App1.Views"
-       Title="App1"
-       x:Class="App1.AppShell">
+       xmlns:local="clr-namespace:HakatonAPP.Views"
+       Title="HakatonAPP"
+       x:Class="HakatonAPP.AppShell">
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -24,8 +24,7 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Отправка" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:MainPage}" />
-        <ShellContent Title="Просмотр" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:BrowsePage}" />
+        <ShellContent Title="Главная" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:MainPage}" />
     </TabBar>
 
 

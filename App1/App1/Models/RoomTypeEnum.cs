@@ -3,7 +3,7 @@ using System.Text;
 
 using static Xamarin.Essentials.Permissions;
 
-namespace App1.Models
+namespace HakatonApp.Models
 {
     public enum RoomTypeEnum
     {

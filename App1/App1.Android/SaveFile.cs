@@ -2,14 +2,16 @@
 
 using Java.IO;
 
+using Shared;
+
 using System;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
 
-[assembly: Dependency(typeof(App1.Droid.SaveFile))]
-namespace App1.Droid
+[assembly: Dependency(typeof(HakatonAPP.Droid.SaveFile))]
+namespace HakatonAPP.Droid
 {
 
     public class SaveFile:IFileEngine

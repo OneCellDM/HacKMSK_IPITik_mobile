@@ -1,4 +1,4 @@
-﻿using App1.Models;
+﻿using HakatonApp.Models;
 
 using System;
 using System.Collections.Generic;
@@ -7,13 +7,13 @@ using System.Text;
 
 using Xamarin.Forms;
 
-namespace App1.Converters
+namespace HakatonApp.Converters
 {
     public class RoomTypeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-           if(value == null) return null;
+            if (value == null) return null;
             if (value is RoomTypeEnum)
             {
                 return (RoomTypeEnum)value switch

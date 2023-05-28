@@ -7,20 +7,20 @@ using System.Diagnostics;
 using System.Reactive.Linq;
 using System.Text;
 
-namespace App1.Validation
+namespace HakatonApp.Validation
 {
-    public class ValidationManager:ReactiveObject
+    public class ValidationManager : ReactiveObject
     {
         private List<ValidatableObject> _validatableObjects { get; set; } = new List<ValidatableObject>();
         private Dictionary<ValidatableObject, IDisposable> disposables { get; set; } = new Dictionary<ValidatableObject, IDisposable>();
-       
+
         [Reactive]
         public bool HasValide { get; set; }
 
         [Reactive]
         public List<string> AllErrors { get; set; } = new List<string>();
-       
-        
+
+
         public void Add(params ValidatableObject[] validatableObjects)
         {
 
@@ -30,8 +30,8 @@ namespace App1.Validation
 
                 var disp = validatableObject.WhenAnyValue(x => x.IsValid)
                                             .Subscribe((v) => HasValide = IsValidAll());
-                                          
-               
+
+
                 disposables.Add(validatableObject, disp);
             }
         }
@@ -49,17 +49,17 @@ namespace App1.Validation
         {
             AllErrors.Clear();
 
-            foreach(var validatableObject in _validatableObjects)
+            foreach (var validatableObject in _validatableObjects)
             {
-                if(validatableObject.IsValid is false)
+                if (validatableObject.IsValid is false)
                 {
-                    AllErrors.Add(validatableObject.ValidationDescriptions); 
+                    AllErrors.Add(validatableObject.ValidationDescriptions);
                 }
-                
+
             }
-            Debug.WriteLine("Count:"+AllErrors.Count);
+            Debug.WriteLine("Count:" + AllErrors.Count);
             return AllErrors.Count == 0;
-            
+
         }
 
     }

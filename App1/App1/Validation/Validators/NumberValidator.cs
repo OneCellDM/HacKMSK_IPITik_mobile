@@ -1,8 +1,10 @@
-﻿using System;
+﻿using HakatonApp.Validation;
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace App1.Validation.Validators
+namespace HakatonApp.Validation.Validators
 {
     public class NumberValidator : IValidationRule<string>
     {
@@ -16,7 +18,7 @@ namespace App1.Validation.Validators
         public bool Validate(string value)
         {
             return int.TryParse(value, out var number);
-           
+
         }
     }
 }

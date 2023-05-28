@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms.PlatformConfiguration;
 
-namespace App1.Services
+namespace HakatonApp.Services
 {
     public static class GeoLocationService
     {
         public static async Task<Location> GetGeoLocation()
         {
             var request = new GeolocationRequest(GeolocationAccuracy.Best);
-            return  await Geolocation.GetLocationAsync(request);
-            
+            return await Geolocation.GetLocationAsync(request);
+
         }
+
     }
 }

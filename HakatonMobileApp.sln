@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HakatonAPP.Android", "App1\App1.Android\HakatonAPP.Android.csproj", "{0AC24F94-D7DA-45A7-A209-AA656104436B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HakatonApp", "App1\App1\HakatonApp.csproj", "{B210878C-236C-4B30-B074-8AF9BC4BD6FC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{94CE76BC-D3D6-4F5C-AE42-5E968D7E0F71}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AC24F94-D7DA-45A7-A209-AA656104436B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AC24F94-D7DA-45A7-A209-AA656104436B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AC24F94-D7DA-45A7-A209-AA656104436B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0AC24F94-D7DA-45A7-A209-AA656104436B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AC24F94-D7DA-45A7-A209-AA656104436B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AC24F94-D7DA-45A7-A209-AA656104436B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B210878C-236C-4B30-B074-8AF9BC4BD6FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B210878C-236C-4B30-B074-8AF9BC4BD6FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B210878C-236C-4B30-B074-8AF9BC4BD6FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B210878C-236C-4B30-B074-8AF9BC4BD6FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94CE76BC-D3D6-4F5C-AE42-5E968D7E0F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94CE76BC-D3D6-4F5C-AE42-5E968D7E0F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94CE76BC-D3D6-4F5C-AE42-5E968D7E0F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94CE76BC-D3D6-4F5C-AE42-5E968D7E0F71}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {682E547A-2767-4ED0-9F5B-BD28B542952C}
+	EndGlobalSection
+EndGlobal

@@ -1,4 +1,4 @@
-﻿    using App1.Models;
+﻿using HakatonApp.Models;
 
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
 
-namespace App1.ViewModels
+namespace HakatonApp.ViewModels
 {
     public class BaseViewModel : ReactiveObject
     {
@@ -19,6 +19,6 @@ namespace App1.ViewModels
 
         [Reactive]
         public string Title { get; set; }
-     
+
     }
 }

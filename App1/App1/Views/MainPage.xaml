@@ -1,39 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App1.Views.MainPage"
-             xmlns:conv="clr-namespace:App1.Converters"
-             xmlns:vm="clr-namespace:App1.ViewModels"
+             x:Class="HakatonAPP.Views.MainPage"
+             xmlns:conv="clr-namespace:HakatonApp.Converters"
+             xmlns:vm="clr-namespace:HakatonApp.ViewModels"
+             xmlns:entryEx="clr-namespace:HakatonApp.Components"
+             xmlns:ct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit" xmlns:vm1="clr-namespace:HakatonApp.ViewModels"
              Title="{Binding Title}">
 
 
     <ContentPage.BindingContext>
         <vm:MainViewModel />
     </ContentPage.BindingContext>
-
+  
     <ContentPage.Resources>
         <conv:InvertBoolConverter x:Key="invertBoolConverter"></conv:InvertBoolConverter>
         <ResourceDictionary>
+            <Style TargetType="{Type Label}">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="Body"/>
+               
+            </Style>
+            <Style TargetType="Picker">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="TitleColor" Value="Gray"/>
+              
+            </Style>
             <Style TargetType="Label" x:Key="errorDescriptionStyle">
                 <Setter Property="TextColor" Value="Red" />
                 <Setter Property="FontSize" Value="Small" />
+                
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
-            <Style TargetType="Entry">
-                <Setter Property="FontSize" Value="Default"/>
+            
+           
+            
+            <Style TargetType="entryEx:EntryEx">
+             
                 <Setter Property="TextColor" Value="Black"/>
-                
-                
+                <Setter Property="FontSize" Value="Default"/>
+               
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HeightRequest" Value="45"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="IsCurvedCornersEnabled" Value="True"/>
+                <Setter Property="BorderColor" Value="{StaticResource Primary}"/>
+              
+
             </Style>
+            
+            <Style TargetType="Frame">
+                <Setter Property="BorderColor" Value="{StaticResource Primary}"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="CornerRadius" Value="10"/>
+            </Style>
+            
+>            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="Default"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="10"/>
+               
+                <Setter Property="Background" Value="{StaticResource Primary}"/>
+                <Style.Triggers>
+                    <Trigger TargetType="Button" Property="IsEnabled" Value="True">
+                        <Setter Property="Background" Value="{StaticResource Primary}"/>
+                    </Trigger>
+                    <Trigger TargetType="Button" Property="IsEnabled" Value="False">
+                        <Setter Property="Background" Value="#5EAEF9"/>
+                    </Trigger>
+                </Style.Triggers>
+
+            </Style>
+          
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ScrollView Grid.Row="0">
-        <StackLayout Spacing="10">
-
-            <Label HorizontalOptions="Center" FontSize="Large" Text="Отправить видео"></Label>
-            <Grid VerticalOptions="Center" Padding="10">
+        <StackLayout>
+            
+            <Grid VerticalOptions="Center" Padding="10,5">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -42,77 +92,112 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
+
                 <StackLayout Grid.Row="0">
+                    
+                    <Label Text="Адрес" HorizontalOptions="Center"></Label>
+
+                    <Frame>
+                        <Picker   Title="Адрес" FontSize="Default"  SelectedIndex="{Binding AddressSelectedIndex}" 
+                            ItemsSource="{Binding AddResses}"/>
+                    </Frame>                    
+                </StackLayout>
+
+
+                <StackLayout Grid.Row="1">
+                    <Label HorizontalOptions="Center" Text="Этаж квартиры"/>
+                    <entryEx:EntryEx   Text="{Binding Floor.Value,Mode=Default}">
+                            <Entry.Triggers>
+                                <DataTrigger 
+                                        TargetType="Entry"
+                                        Binding="{Binding Floor.IsValid}"
+                                        Value="False">
+                                    <Setter Property="TextColor" Value="Red" />
+                                </DataTrigger>
+                            </Entry.Triggers>
+                        </entryEx:EntryEx>
+                   
                     <Label
                         Style="{StaticResource errorDescriptionStyle}"
                         Text="{Binding Floor.ValidationDescriptions}"
                         IsVisible="{Binding Floor.IsValid, Converter={StaticResource invertBoolConverter}}" />
 
-
-                    <Entry Placeholder="Этаж" Text="{Binding Floor.Value,Mode=Default}">
-                        <Entry.Triggers>
-                            <DataTrigger 
-                                        TargetType="Entry"
-                                        Binding="{Binding Floor.IsValid}"
-                                        Value="False">
-                                <Setter Property="TextColor" Value="Red" />
-                            </DataTrigger>
-                        </Entry.Triggers>
-                    </Entry>
-
                 </StackLayout>
 
-                <StackLayout Orientation="Horizontal" Spacing="10" Grid.Row="1">
-                    <Label VerticalOptions="Center" FontSize="Medium" Text="Loaction:"/>
-                    <Entry WidthRequest="120" Text="{Binding GeoLoaction.Latitude}"/>
-                    <Entry WidthRequest="120" Text="{Binding GeoLoaction.Longitude}"/>
-                </StackLayout>
+              
                 
                 <StackLayout Grid.Row="2">
-
+                    <Label HorizontalOptions="Center" Text="Номер квартиры"/>
+                    <entryEx:EntryEx   Text="{Binding Flat.Value}">
+                            <Entry.Triggers>
+                                <DataTrigger 
+                                        TargetType="Entry"
+                                        Binding="{Binding Flat.IsValid}"
+                                        Value="False">
+                                    <Setter Property="TextColor" Value="Red" />
+                                </DataTrigger>
+                            </Entry.Triggers>
+                        </entryEx:EntryEx>
+               
                     <Label
                         Style="{StaticResource errorDescriptionStyle}"
                         Text="{Binding Flat.ValidationDescriptions}"
                         IsVisible="{Binding Flat.IsValid, Converter={StaticResource invertBoolConverter}}" />
 
-
-                    <Entry Placeholder="Номер квартиры" Text="{Binding Flat.Value}">
-                        <Entry.Triggers>
-                            <DataTrigger 
-                                        TargetType="Entry"
-                                        Binding="{Binding Flat.IsValid}"
-                                        Value="False">
-                                <Setter Property="TextColor" Value="Red" />
-                            </DataTrigger>
-                        </Entry.Triggers>
-                    </Entry>
-
                 </StackLayout>
+
 
                 <StackLayout Grid.Row="3">
-                    <Picker Title="Тип комнаты" SelectedIndex="{Binding RoomTypeSelectedIndex}" 
+                    <Label Text="Тип комнаты" HorizontalOptions="Center"></Label>
+                    <Frame>
+                        <Picker Title="Тип комнаты" FontSize="Default" SelectedIndex="{Binding RoomTypeSelectedIndex}" 
                             ItemsSource="{Binding RooomTypes}">
-                        
-                    </Picker>
+
+                        </Picker>
+                    </Frame>
 
                 </StackLayout>
 
-
-                <StackLayout Grid.Row="4">
+                <StackLayout Grid.Row="4" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                   
+                       
+                        <Button CornerRadius="10" Command="{Binding  VideoRecordCommand}" 
+                            IsEnabled="{Binding ValidationManager.HasValide}" 
+                            Text="Записать видео" />
+               
+                        <Button Command="{Binding OpenFileCommand}"
+                                CornerRadius="10"
+                                IsEnabled="{Binding ValidationManager.HasValide}" 
+                                Text="Открыть видео" />
                     
-        
-                    <Button Command="{Binding  VideoRecordCommand}" 
-                        IsEnabled="{Binding ValidationManager.HasValide}" 
-                        Text="Записать видео" Grid.Row="4"/>
-                    <Button Command="{Binding OpenFileCommand}" 
-                        IsEnabled="{Binding ValidationManager.HasValide}" 
-                        Text="Открыть видео" />
                 </StackLayout>
 
-                <Label Text="{Binding  ResultData}" FontSize="Medium"  HorizontalOptions="Center" Grid.Row="5" />
-                <ActivityIndicator Color="{StaticResource Primary}" IsRunning="{Binding IsBusy}" Grid.Row="6"></ActivityIndicator>
+                
+                <Frame BorderColor="Transparent"  Grid.Row="5">
+                    <Grid>
+                        
+                        <StackLayout IsVisible="{Binding IsBusy}">
+                            <Label  HorizontalTextAlignment="Center" Text="{Binding WaitMessage}"/>
+                            <ActivityIndicator Color="{StaticResource Primary}" IsRunning="True" ></ActivityIndicator>
+                        </StackLayout>
 
-
+                        <StackLayout IsVisible="{Binding ResultIsVisible}">
+                            
+                            <Label  HorizontalOptions="Center" Text="Результат обработки"/>
+                            <entryEx:EntryEx  IsReadOnly="True" BorderColor="Gray" HorizontalTextAlignment="Center"  BorderWidth="2" Text="{Binding ResultData}"/>
+                            
+                            <Label Margin="0,10" HorizontalOptions="Center" FontSize="Medium" Text="Найденные объекты"/>
+                            
+                            <CollectionView   ItemsSource="{Binding DetectedResults}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding }" FontSize="Medium"/>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
 
             </Grid>
         </StackLayout>

@@ -1,4 +1,4 @@
-﻿using App1.ViewModels;
+﻿using HakatonApp.ViewModels;
 
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -8,25 +8,25 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace App1.Validation
+namespace HakatonApp.Validation
 {
-    public interface  ValidatableObject
+    public interface ValidatableObject
     {
         public bool IsValid { get; set; }
 
-        public string ValidationDescriptions { get;}
+        public string ValidationDescriptions { get; }
     }
-    
-    public class ValidatableObject<T> : ReactiveObject, ValidatableObject 
+
+    public class ValidatableObject<T> : ReactiveObject, ValidatableObject
     {
-       
+
         public List<IValidationRule<T>> Validations { get; set; } = new List<IValidationRule<T>>();
 
         [Reactive]
         public T Value { get; set; }
         public ValidatableObject(params IValidationRule<T>[] validations)
         {
-           
+
             foreach (var val in validations)
                 Validations.Add(val);
             this.WhenAnyValue(x => x.Value).Subscribe((v) =>

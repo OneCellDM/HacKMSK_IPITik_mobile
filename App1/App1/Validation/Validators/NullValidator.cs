@@ -1,8 +1,10 @@
-﻿using System;
+﻿using HakatonApp.Validation;
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace App1.Validation.Validators
+namespace HakatonApp.Validation.Validators
 {
     public class NullValidator : IValidationRule<string>
     {
@@ -14,7 +16,7 @@ namespace App1.Validation.Validators
         }
         public bool Validate(string value)
         {
-           return !string.IsNullOrEmpty(value?.Trim());
+            return !string.IsNullOrEmpty(value?.Trim());
         }
     }
 }
